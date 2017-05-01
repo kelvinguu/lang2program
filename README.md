@@ -17,7 +17,8 @@ the context-dependent semantic parsing dataset that we evaluate on.
 First, download the repository and necessary data.
 
 ```bash
-$ git clone git@github.com:kelvinguu/lang2program.git
+$ git clone https://github.com/kelvinguu/lang2program.git
+$ mkdir -p lang2program/data
 $ cd lang2program/data
 $ wget http://nlp.stanford.edu/data/glove.6B.zip  # GloVe vectors
 $ unzip glove.6B.zip -d glove.6B
