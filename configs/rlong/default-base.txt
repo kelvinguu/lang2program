@@ -1,0 +1,89 @@
+# Default base config for all RLong domains
+seed = 0
+train_mode = semi-supervised
+delexicalized = False
+optimizer = adam
+learning_rate = 0.001
+batch_size = 8                 # small batch to allow for larger beam per example
+max_iters = 1000000
+train_batch_size = 5000        # batch gradient computation to avoid gpu memory overflow
+num_evaluate_examples = 150
+num_evaluate_examples_big = 10000000000000  # essentially infinity
+
+# now measured in number of steps, not seconds
+timing {
+    save = 1000
+    eval = 300
+    big_eval = 4500
+}
+
+parse_model {
+    train_word_embeddings = False
+    utterance_embedder {
+        lstm_dim = 64          # must be half of final h_dim
+        # utterance_length = ???      <-- Need to be filled in by dataset mixin
+    }
+    condition_on_history = True
+    history_length = 4
+    condition_on_stack = False
+    stack_embedder {
+        max_list_size = 7
+        primitive_dim = 32
+        object_dim = 32
+    }
+    soft_copy = False
+    predicate_positions = False
+    h_dims = [
+        128
+        128
+    ]
+}
+
+decoder {
+    inputs_caching = False
+    prune {
+        max_stack_size = 3
+        action_must_clear_beam = true
+    }
+    normalization = local
+    train_exploration_policy {
+        type = beam-search
+        exploration_gamma = null
+        exploration_epsilon = 0.15
+        beam_size = 32
+        independent_utterance_exploration = False
+        iterations_per_utterance = 7
+    }
+    test_exploration_policy {
+        type = beam-search
+        exploration_epsilon = 0
+        exploration_gamma = 1
+        beam_size = 32
+        independent_utterance_exploration = False
+        iterations_per_utterance = 7
+    }
+    case_weighter {
+        type = mml
+        alpha = 1
+        beta = 1
+    }
+    value_function {
+        type = constant
+        constant_value = 0
+    }
+}
+
+dataset {
+    domain = rlong
+    train_num_steps = [-1]
+    valid_num_steps = [1,2,3,4,5]
+    final_num_steps = [1,2,3,4,5]
+    train_slice_steps_from_middle = False
+    valid_slice_steps_from_middle = False
+    final_slice_steps_from_middle = False
+    # The following additional fields are needed from the dataset mixin:
+    # name = ___
+    # train_file = rlong/___-train-orig.tsv
+    # valid_file = rlong/___-dev.tsv
+    # final_file = rlong/___-test.tsv
+}

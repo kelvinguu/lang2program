@@ -1,0 +1,14 @@
+# Mixin for the tangrams subdomain
+
+parse_model {
+    utterance_embedder {
+        utterance_length = 15
+    }
+}
+
+dataset {
+    name = tangrams
+    train_file = rlong/tangrams-train-orig.tsv
+    valid_file = rlong/tangrams-dev.tsv
+    final_file = rlong/tangrams-test.tsv
+}

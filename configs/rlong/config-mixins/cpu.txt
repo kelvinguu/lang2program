@@ -1,0 +1,2 @@
+# Running on CPU does not require train batch size
+train_batch_size = 1000000

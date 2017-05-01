@@ -1,0 +1,14 @@
+# Mixin for the scene subdomain
+
+parse_model {
+    utterance_embedder {
+        utterance_length = 25
+    }
+}
+
+dataset {
+    name = scene
+    train_file = rlong/scene-train-orig.tsv
+    valid_file = rlong/scene-dev.tsv
+    final_file = rlong/scene-test.tsv
+}

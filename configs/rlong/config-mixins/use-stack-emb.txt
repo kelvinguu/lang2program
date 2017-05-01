@@ -1,0 +1,3 @@
+parse_model {
+    condition_on_stack = True
+}

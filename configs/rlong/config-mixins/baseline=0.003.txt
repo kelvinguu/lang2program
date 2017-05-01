@@ -1,0 +1,9 @@
+# Add batched-reinforce-basic first!
+
+decoder {
+    case_weighter {
+        type = reinforce
+        correct_weight = 1
+        incorrect_weight = -0.003
+    }
+}

@@ -1,0 +1,6 @@
+decoder {
+    case_weighter {
+        type = mml
+        beta = 0.5
+    }
+}

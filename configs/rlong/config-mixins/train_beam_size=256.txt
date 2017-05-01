@@ -1,0 +1,5 @@
+decoder {
+    train_exploration_policy {
+        beam_size = 256
+    }
+}

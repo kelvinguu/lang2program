@@ -1,0 +1,4 @@
+dataset {
+	train_num_steps = [1, 2, 3, 4, 5]
+    train_slice_steps_from_middle = True
+}

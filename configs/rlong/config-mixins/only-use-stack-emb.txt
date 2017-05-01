@@ -1,0 +1,4 @@
+parse_model {
+    condition_on_stack = True
+    condition_on_history = False
+}

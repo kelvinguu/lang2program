@@ -1,0 +1,14 @@
+# Mixin for the alchemy subdomain
+
+parse_model {
+    utterance_embedder {
+        utterance_length = 18
+    }
+}
+
+dataset {
+    name = alchemy
+    train_file = rlong/alchemy-train-orig.tsv
+    valid_file = rlong/alchemy-dev.tsv
+    final_file = rlong/alchemy-test.tsv
+}

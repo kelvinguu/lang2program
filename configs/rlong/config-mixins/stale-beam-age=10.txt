@@ -1,0 +1,14 @@
+decoder {
+    train_exploration_policy {
+        type = stale-beam-search
+        max_age = 10
+        fresh_policy {
+            type = gamma-randomized-search
+            exploration_epsilon = null
+            exploration_gamma = 0.3
+            beam_size = 32
+            independent_utterance_exploration = False
+            iterations_per_utterance = 7
+        }
+    }
+}

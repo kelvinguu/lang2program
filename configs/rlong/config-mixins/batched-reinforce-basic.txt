@@ -1,0 +1,14 @@
+decoder {
+    train_exploration_policy {
+        type = batched-reinforce
+        exploration_epsilon = 0.0
+        exploration_gamma = 1.0
+        termination_lookahead = False
+        zombie_mode = False
+    }
+    case_weighter {
+        type = reinforce
+        correct_weight = 1
+        incorrect_weight = 0
+    }
+}

@@ -1,0 +1,13 @@
+SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )  # location of this script
+IMAGE=kelvinguu/lang2program:1.0  # docker image
+
+docker pull $IMAGE  # get the latest version of the image
+
+# start docker
+docker run \
+--net host \
+--volume $SCRIPTPATH:/lang2program \
+--env STRONGSUP_DIR='/lang2program/data' \
+--env PYTHONPATH='/lang2program' \
+--workdir /lang2program \
+--interactive --tty $IMAGE /bin/bash

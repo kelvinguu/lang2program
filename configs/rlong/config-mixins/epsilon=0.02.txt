@@ -1,0 +1,7 @@
+decoder {
+    train_exploration_policy {
+        type = beam-search
+        exploration_gamma = null
+        exploration_epsilon = 0.02
+    }
+}

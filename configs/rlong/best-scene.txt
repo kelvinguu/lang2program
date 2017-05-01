@@ -1,0 +1,5 @@
+include "default-base.txt"
+include "config-mixins/beta=0.txt"
+include "config-mixins/only-use-stack-emb.txt"
+include "config-mixins/epsilon=0.15.txt"
+include "dataset-mixins/scene.txt"

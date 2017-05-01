@@ -1,0 +1,21 @@
+# Debug base config for all RLong domains
+include "default-base.txt"
+
+batch_size = 1
+max_iters = 10
+train_batch_size = 2000
+num_evaluate_examples = 3
+num_evaluate_examples_big = 2000
+
+timing {
+    save = 10
+    eval = 5
+    big_eval = 1000
+}
+
+parse_model {
+    h_dims = [64, 64]
+    utterance_embedder {
+        lstm_dim = 32
+    }
+}

@@ -1,0 +1,8 @@
+# Add batched-reinforce-basic first!
+
+decoder {
+    path_weighter {
+        constant_good = 1
+        constant_bad = -0.1
+    }
+}

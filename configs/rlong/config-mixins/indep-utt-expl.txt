@@ -1,0 +1,5 @@
+decoder {
+    train_exploration_policy {
+        independent_utterance_exploration = True
+    }
+}

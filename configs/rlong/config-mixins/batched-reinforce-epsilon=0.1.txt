@@ -1,0 +1,8 @@
+# Add batched-reinforce-basic first!
+
+decoder {
+    train_exploration_policy {
+        exploration_epsilon = 0.1
+        exploration_gamma = 1.0
+    }
+}
