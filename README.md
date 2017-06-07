@@ -77,3 +77,7 @@ files:
     - TensorBoard log files
 - codalab.json
     - The results of periodic evaluation are saved here.
+
+## Program syntax
+
+See `scone.md` for more information.
