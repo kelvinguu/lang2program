@@ -47,10 +47,6 @@ class DataDirectory:
     Must first set the environmental variable STRONGSUP_DIR to the
     absolute path of the directory containing data before using this class.
     """
-    # Central data directory
-    remote_root = '/u/nlp/scr/strongsup_data/'
-    remote_host = 'jamie.stanford.edu'
-
     # Set location of local data directory from environment variable
     env_var = 'STRONGSUP_DIR'
     if env_var not in os.environ:
@@ -120,21 +116,3 @@ class DataDirectory:
             raise ValueError(("{} is not a subdirectory of {} or is not an "
                               "absolute path").format(path, base))
         return os.path.relpath(path, base)
-
-def sync(username):
-    def helper(curr_dir):
-        if len(curr_dir.subdirectories) == 0:
-            if curr_dir.sync:
-                src = DataDirectory.remote_root + DataDirectory.relative_path(
-                        curr_dir.absolute_path) + '/'
-                dest = curr_dir.absolute_path
-                host = DataDirectory.remote_host
-                if username:
-                    host = username + '@' + host
-                rsync(src_path=src, dest_path=dest,
-                      src_host=host)
-
-        for subdir in curr_dir.subdirectories:
-            helper(subdir)
-
-    helper(DataDirectory._base_dir)

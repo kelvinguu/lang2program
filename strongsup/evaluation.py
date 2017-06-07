@@ -301,15 +301,6 @@ class Evaluation(object):
         buffer.write('\n')
 
     def json_summarize(self, json_filename, step, prefix=None):
-        VALID_ACC_KEYS = [
-            u'VALID_denoAcc_silent',
-            u'VALID_denoAcc_silent_1utts',
-            u'VALID_denoAcc_silent_2utts',
-            u'VALID_denoAcc_silent_3utts',
-            u'VALID_denoAcc_silent_4utts',
-            u'VALID_denoAcc_silent_5utts',
-        ]
-
         flags = 'r+' if os.path.exists(json_filename) else 'w+'
         with open(json_filename, flags) as json_file:
             text = json_file.read()
@@ -320,14 +311,6 @@ class Evaluation(object):
                 log = json.loads(text)
 
             stats_dict = self.as_dict(prefix)
-            valid_key = VALID_ACC_KEYS[0]
-            if valid_key in stats_dict:
-                if valid_key not in log or stats_dict[valid_key] > log[valid_key]:
-                    for key in VALID_ACC_KEYS:
-                        index = 0 if valid_key not in log else len(log[valid_key])
-                        log["BEST_" + key] = {"index": index,
-                                              "value": stats_dict[key]['mean']}
-
             for name, stat in stats_dict.iteritems():
                 if name in log:
                     log[name].append(stat['mean'])
